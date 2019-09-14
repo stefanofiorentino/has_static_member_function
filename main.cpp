@@ -43,7 +43,7 @@ struct NotBaseOfBaseStruct
 namespace lib
 {
     template<typename T>
-    typename std::enable_if<has_print_and_is_base_of<Struct, Base>::value, void>::type
+    typename std::enable_if<has_print_and_is_base_of<T, Base>::value, void>::type
     print()
     {
         T::print();
@@ -64,6 +64,8 @@ int main()
 
     lib::print<Base>();
     lib::print<Struct>();
+
+//    lib::print<NotBaseOfBaseStruct>(); // compilation error
 
     return 0;
 }
