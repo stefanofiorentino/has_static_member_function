@@ -43,9 +43,10 @@ struct NotBaseOfBaseStruct
 namespace lib
 {
     template<typename T>
-    typename std::enable_if<has_print_and_is_base_of<T, Base>::value, void>::type
-    print()
+    void print()
     {
+        static_assert(has_print_and_is_base_of<T, Base>::value,
+                      "T has neither a static print member os is based on Base");
         T::print();
     }
 }
